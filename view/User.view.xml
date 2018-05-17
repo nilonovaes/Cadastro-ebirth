@@ -1,0 +1,74 @@
+<core:View 
+    xmlns:core="sap.ui.core" 
+    xmlns="sap.uxap" 
+    xmlns:layout="sap.ui.layout" 
+    xmlns:m="sap.m" 
+    xmlns:u="sap.ui.unified" controllerName="ModelUI5.controller.User" 
+    xmlns:blockcolor="sap.uxap.sample.SharedBlocks" height="100%">
+    <m:Page title="E-IT Birthday - User Management" enableScrolling="true" showHeader="true" class="sapMGlobalBackgroundImage sapMGlobalBackgroundColor myRootPage ">
+        <m:customHeader>
+            <m:Bar class="myEitBar">
+                <m:contentLeft>
+                    <m:Image height="75%" src="images/eitlogo.png"/>
+                </m:contentLeft>
+                <m:contentMiddle class="whiteColor">
+                    <m:Text text = "E-IT Birthday - User Management"></m:Text>
+                </m:contentMiddle>
+                <m:contentRight>
+                    <m:Button type="Accept" icon="sap-icon://nav-back" press="onNavPress"></m:Button>
+                </m:contentRight>
+            </m:Bar>
+        </m:customHeader>
+        <ObjectPageLayout id="ObjectPageLayout" enableLazyLoading="false" showAnchorBarPopover="false">
+            <headerTitle>
+                <ObjectPageHeader objectTitle="Cadastro de Funcionários"></ObjectPageHeader>
+            </headerTitle>
+            <sections>
+                <ObjectPageSection title="Dados Pessoais">
+                    <subSections>
+                        <ObjectPageSubSection title="Dados Pessoais">
+                            <blocks>
+                                <m:VBox class="sapUiSmallMarginBottom">
+                                    <m:Input id="name" placeholder="Insira o nome" width="50%" value="{path: 'UserSelected>/name'}"/>
+                                    <m:Input id="name" placeholder="Insira o nome" width="50%" value="{path: 'UserSelected>/name'}"/>
+                                    <m:DatePicker id="date" value="{path: 'UserSelected>/date'}" valueFormat="dd-MM-yyyy" displayFormat="long" change="handleChange" width="20%"/>
+                                    <m:Input id="position" placeholder="Insira o cargo " width="30%" value="{path: 'UserSelected>/position'}"/>
+                                </m:VBox>
+                            </blocks>
+                        </ObjectPageSubSection>
+                        <ObjectPageSubSection title="Subsection 1.2 ">
+                            <blocks></blocks>
+                        </ObjectPageSubSection>
+                    </subSections>
+                </ObjectPageSection>
+                <ObjectPageSection title="Midia">
+                    <subSections>
+                        <ObjectPageSubSection title="Importação foto ">
+                            <blocks>
+                                <layout:VerticalLayout >
+                                    <u:FileUploader id="fileUploader" name="myFileUpload" uploadUrl="upload/" uploadComplete="handleUploadComplete" change="handleValueChange" typeMissmatch="handleTypeMissmatch" style="Emphasized" fileType="png,jpg,jpeg" placeholder="Selecione a foto...">
+                                        <u:parameters>
+                                            <u:FileUploaderParameter name="param1" value="Foo"/>
+                                            <u:FileUploaderParameter name="param2" value="bar"/>
+                                        </u:parameters>
+                                        <u:headerParameters>
+                                            <u:FileUploaderParameter name="headerParam1" value="Foo"/>
+                                            <u:FileUploaderParameter name="headerParam2" value="bar"/>
+                                        </u:headerParameters>
+                                    </u:FileUploader>
+                                    <m:Button text="Upload File" press="handleUploadPress"/>
+                                </layout:VerticalLayout>
+                                <m:Image src="{path: 'UserSelected>/image'}"/>
+                            </blocks>
+                        </ObjectPageSubSection>
+                        <ObjectPageSubSection title="">
+                            <blocks>
+                                <m:Text text=""/>
+                            </blocks>
+                        </ObjectPageSubSection>
+                    </subSections>
+                </ObjectPageSection>
+            </sections>
+        </ObjectPageLayout>
+    </m:Page>
+</core:View>

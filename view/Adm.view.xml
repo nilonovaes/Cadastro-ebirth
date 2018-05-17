@@ -1,0 +1,74 @@
+<mvc:View 
+    xmlns="sap.m" 
+    xmlns:core="sap.ui.core" 
+    xmlns:mvc="sap.ui.core.mvc" controllerName="ModelUI5.controller.Adm">
+    <Page title="E-IT Birthday - User Management" enableScrolling="true" showHeader="true" class="sapMGlobalBackgroundImage sapMGlobalBackgroundColor myRootPage ">
+        <customHeader>
+            <Bar class="myEitBar">
+                <contentLeft>
+                    <Image height="75%" src="images/eitlogo.png"/>
+                </contentLeft>
+                <contentMiddle class="whiteColor">
+                    <Text text = "E-IT Birthday - User Management"></Text>
+                </contentMiddle>
+                <contentRight>
+                    <!-- <Button type="Accept" icon="sap-icon://home" press="onNavPress"></Button> -->
+                </contentRight>
+            </Bar>
+        </customHeader>
+        <content>
+            <Table id="table" width="auto" growing="true" growingScrollToLoad="true" items="{ path: 'birthdays>/Birthdays',
+                         sorter: {
+                            path: 'name'
+                         } }">
+                <headerToolbar>
+                    <Toolbar>
+                        <Button icon="sap-icon://add" text="Adicionar" press="addRow"/>
+                    </Toolbar>
+                </headerToolbar>
+                <columns>
+                    <Column>
+                        <header>
+                            <Text text="{i18n>name}" />
+                        </header>
+                    </Column>
+                    <Column>
+                        <header>
+                            <Text text="{i18n>date}" />
+                        </header>
+                    </Column>
+                    <Column>
+                        <header>
+                            <Text text="{i18n>position}" />
+                        </header>
+                    </Column>
+                    <Column>
+                        <header>
+                            <Text text="{i18n>image}" />
+                        </header>
+                    </Column>
+                    <Column>
+                        <header>
+                            <Text text="{i18n>active}" />
+                        </header>
+                    </Column>
+                    <Column width="50px"/>
+                </columns>
+                <items>
+                    <ColumnListItem type="Navigation" press="onPress">
+                        <cells>
+                            <ObjectIdentifier title="{birthdays>name}"/>
+                            <Text text="{birthdays>date}" />
+                            <Text text="{birthdays>position}" />
+                            <ObjectStatus icon="{= ${birthdays>active} === '' ? 'sap-icon://add-photo' : 'sap-icon://accept' }"
+                                          state="{= ${birthdays>active} === 'X' ? 'Success' : 'Error' }" />
+                            <ObjectStatus icon="{= ${birthdays>image} === '' ? 'sap-icon://circle-task-2' : 'sap-icon://circle-task-2' }" state="{= ${birthdays>image} === '' ? 'Error' : 'Success' }" />
+                            <Button icon="sap-icon://status-inactive" press="deleteRow" type="Reject" />
+                            <!-- <ObjectIdentifier title="{birthdays>image}"/> -->
+                        </cells>
+                    </ColumnListItem>
+                </items>
+            </Table>
+        </content>
+    </Page>
+</mvc:View>
